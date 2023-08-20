@@ -20,7 +20,7 @@ export const printSavedInfo = ({
   isReserved,
 }: SaveParams) => {
   const _price = new Intl.NumberFormat('ko-KR').format(price);
-  const reservationState = isReserved ? '함' : '안함';
+  const reservationState = isReserved === 'Y' ? '함' : '안함';
   console.log(
     `날짜: ${date} / 치료사: ${therapist} / 환자번호: ${patientNum} / 가격: ${_price} / ${patientType} / 예약${reservationState}`
   );
