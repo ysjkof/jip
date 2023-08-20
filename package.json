@@ -1,0 +1,37 @@
+{
+  "name": "@ysjkof/jip",
+  "version": "1.1.0",
+  "description": "",
+  "main": "dist/index.js",
+  "bin": {
+    "jip": "./dist/index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "npx ts-node --esm src/index.ts",
+    "build": "npx tsc"
+  },
+  "keywords": [
+    "cli",
+    "jinsul",
+    "진설"
+  ],
+  "author": "seongjin",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/fuzzy-search": "^2.1.2",
+    "@types/prompts": "^2.4.4",
+    "typescript": "^5.1.6"
+  },
+  "dependencies": {
+    "commander": "^11.0.0",
+    "got": "^13.0.0",
+    "minisearch": "^6.1.0",
+    "node-html-parser": "^6.1.5",
+    "prompts": "^2.4.2",
+    "ts-node": "^10.9.1"
+  },
+  "type": "module",
+  "repository": "https://github.com/ysjkof/jip",
+  "homepage": "https://github.com/ysjkof/jip#readme"
+}
