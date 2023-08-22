@@ -46,7 +46,7 @@ export interface SaveParams {
   date: BodyProps['phy_date'];
   therapist: BodyProps['b'];
   price: BodyProps['phy_price'];
-  isReserved: APPOINT_YN;
+  isReserved: boolean;
   patientNum: BodyProps['patient_num'];
   patientType: BodyProps['patient_type'];
   // userKey: BodyProps['phy_ukey'];

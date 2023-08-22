@@ -33,7 +33,7 @@ export const saveData = async (params: SaveParams) => {
     patient_num: patientNum,
     patient_type: patientType,
     phy_price: price,
-    appoint_yn: isReserved,
+    appoint_yn: isReserved ? 'Y' : 'N',
     phy_ukey: userKey,
   });
   const options: OptionsOfTextResponseBody | undefined = {

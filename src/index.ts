@@ -21,7 +21,6 @@ import {
 } from './cli/output.js';
 import { selectPatient } from './cli/selectPatient.js';
 import type {
-  APPOINT_YN,
   PATIENT_TYPE,
   PatientListAndPrices,
   UserList,
@@ -139,7 +138,7 @@ program
 
     const therapist = options.therapist || loginUser.name;
     const patientType: PATIENT_TYPE = options.first ? '신환' : '재진';
-    const isReserved: APPOINT_YN = options.reserved ? 'Y' : 'N';
+    const isReserved = options.reserved;
     let patientNum = _patientNum;
     if (!_patientNum) patientNum = await selectPatient();
 
