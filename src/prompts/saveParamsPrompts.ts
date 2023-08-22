@@ -6,11 +6,11 @@ import {
   getPromptOfPatient,
   getPromptOfPrice,
   getPromptOfUser,
-} from '../prompts/prompts.js';
-import { printSavedInfo } from './output.js';
+} from './promptsObj.js';
+import { printSavedInfo } from '../cli/output.js';
 import type { SaveParams } from '../types/common.type.js';
 
-export const inputSaveParams = async (): Promise<SaveParams | null> => {
+export const saveParamsPrompts = async (): Promise<SaveParams | null> => {
   if (!userList || !patientListAndPrices) return null;
 
   const questions: prompts.PromptObject<string>[] = [
@@ -70,4 +70,48 @@ const handleError = ({
   if (isReserved !== 'Y' && isReserved !== 'N') {
     throw new Error('예약여부는 Y나 N만 입력');
   }
+};
+
+export const inputDate = async (): Promise<SaveParams['date'] | null> => {
+  const questions = getPromptOfDate();
+  const response = await prompts(questions);
+  return response.date;
+};
+
+export const inputPrice = async (): Promise<SaveParams['price'] | null> => {
+  if (!patientListAndPrices) return null;
+
+  const question: prompts.PromptObject<string> = getPromptOfPrice(
+    patientListAndPrices.prices
+  );
+  const response = await prompts(question);
+  return response.price;
+};
+
+export const inputUser = async (): Promise<SaveParams['therapist'] | null> => {
+  if (!userList) return null;
+
+  const questions: prompts.PromptObject<string> = getPromptOfUser(userList);
+  const response = await prompts(questions);
+  return response.therapist;
+};
+
+export const selectIsReserved = async (): Promise<
+  SaveParams['isReserved'] | null
+> => {
+  const question: prompts.PromptObject<string> = getPromptOfIsReserved();
+  const response = await prompts(question);
+  return response.isReserved;
+};
+
+export const selectPatient = async (): Promise<
+  SaveParams['patientNum'] | null
+> => {
+  if (!patientListAndPrices) return null;
+
+  const question: prompts.PromptObject<string> = getPromptOfPatient(
+    patientListAndPrices.patients
+  );
+  const response = await prompts(question);
+  return response.patient;
 };

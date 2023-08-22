@@ -5,6 +5,10 @@ import { SaveParams } from '../types/common.type.js';
 export const printLine = () => console.log(`${LINE}`);
 export const printLineBreak = () => console.log('\n');
 export const printFailSaveLogin = () => console.log('🚨 로그인 정보 저장실패');
+export const printNotExistCmd = () =>
+  console.log(
+    console.log('\n🚨 없는 커맨드를 입력했습니다. 도움말을 확인하세요.')
+  );
 export const printSuccessSaveLogin = () =>
   console.log('✅ 로그인 정보 저장완료');
 export const printSuccessLogout = () => console.log('✅ 로그아웃 성공.');

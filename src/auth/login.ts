@@ -1,4 +1,4 @@
-import { inputLoginParams } from '../cli/inputLoginParams.js';
+import { loginPrompts } from '../prompts/loginPrompts.js';
 import { addKeyOfCookie } from '../lib/authLib.js';
 import { loadIdAndPassword } from './loadIdAndPassword.js';
 import { loginRequest } from '../httpRequest/loginRequest.js';
@@ -8,7 +8,7 @@ export const login = async () => {
   try {
     let idAndPassword = loadIdAndPassword();
     if (!idAndPassword) {
-      idAndPassword = await inputLoginParams();
+      idAndPassword = await loginPrompts();
       saveIdAndPassword(idAndPassword);
     }
 

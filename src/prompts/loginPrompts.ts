@@ -1,7 +1,7 @@
 import prompts from 'prompts';
-import { LoginParams } from '../types/common.type.js';
+import type { LoginParams } from '../types/common.type.js';
 
-export async function inputLoginParams(): Promise<LoginParams> {
+export async function loginPrompts(): Promise<LoginParams> {
   const questions: prompts.PromptObject<string>[] = [
     {
       type: 'text',

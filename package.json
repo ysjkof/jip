@@ -21,15 +21,15 @@
   "devDependencies": {
     "@types/fuzzy-search": "^2.1.2",
     "@types/prompts": "^2.4.4",
-    "typescript": "^5.1.6"
+    "typescript": "^5.1.6",
+    "ts-node": "^10.9.1"
   },
   "dependencies": {
     "commander": "^11.0.0",
     "got": "^13.0.0",
     "minisearch": "^6.1.0",
-    "node-html-parser": "^6.1.5",
-    "prompts": "^2.4.2",
-    "ts-node": "^10.9.1"
+    "node-html-parser": "^6.1.6",
+    "prompts": "^2.4.2"
   },
   "type": "module",
   "repository": "https://github.com/ysjkof/jip",
