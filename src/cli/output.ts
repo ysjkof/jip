@@ -1,6 +1,7 @@
 import { Response } from 'got';
 import { LINE } from '../constant.js';
 import { SaveParams } from '../types/common.type.js';
+import { patientListAndPrices } from '../index.js';
 
 export const printLine = () => console.log(`${LINE}`);
 export const printLineBreak = () => console.log('\n');
@@ -23,9 +24,22 @@ export const printSavedInfo = ({
   patientType,
   isReserved,
 }: SaveParams) => {
+  if (!patientListAndPrices)
+    throw new Error('printSavedInfo: 환자 정보가 없습니다.');
+  const { patients } = patientListAndPrices;
+
+  let patient = '';
+  patients.some((_patient) => {
+    const [_patientNum] = _patient.split(' - ');
+    if (_patientNum === '' + patientNum) {
+      patient = _patient;
+      return true;
+    }
+  });
+
   const _price = new Intl.NumberFormat('ko-KR').format(price);
   const reservationState = isReserved ? '함' : '안함';
   console.log(
-    `날짜: ${date} / 치료사: ${therapist} / 환자번호: ${patientNum} / 가격: ${_price} / ${patientType} / 예약${reservationState}`
+    `날짜: ${date} / 치료사: ${therapist} / 환자: ${patient} / 가격: ${_price} / ${patientType} / 예약${reservationState}`
   );
 };
