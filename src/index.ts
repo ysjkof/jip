@@ -46,7 +46,7 @@ let isExistArg = false;
 const validArg = process.argv[2];
 
 jip.commands.some((command) => {
-  if (command.name() === validArg) {
+  if (command.name() === validArg || command.alias() === validArg) {
     isExistArg = true;
     return;
   }
@@ -55,6 +55,7 @@ jip.commands.some((command) => {
 if (!validArg) {
   jip.outputHelp();
 }
+
 if (validArg && !isExistArg) {
   jip.outputHelp();
   printNotExistCmd();
