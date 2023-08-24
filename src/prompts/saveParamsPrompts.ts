@@ -5,15 +5,17 @@ import {
   getPromptOfIsReserved,
   getPromptOfPatient,
   getPromptOfPrice,
+  getPromptOfTherapy,
   getPromptOfUser,
 } from './promptsObj.js';
 import { printSavedInfo } from '../cli/output.js';
-import type { SaveParams } from '../types/common.type.js';
+import type { SaveParams, THERAPY_TYPE } from '../types/common.type.js';
 
 export const saveParamsPrompts = async (): Promise<SaveParams | null> => {
   if (!userList || !patientListAndPrices) return null;
 
   const questions: prompts.PromptObject<string>[] = [
+    getPromptOfTherapy(),
     getPromptOfDate(),
     getPromptOfUser(userList),
     getPromptOfPatient(patientListAndPrices.patients),
@@ -23,6 +25,7 @@ export const saveParamsPrompts = async (): Promise<SaveParams | null> => {
 
   const response = await prompts(questions);
 
+  const therapy: THERAPY_TYPE = response.therapy;
   const date: SaveParams['date'] = response.date;
   const therapist: SaveParams['therapist'] = response.therapist;
   const patient: SaveParams['patientNum'] = response.patient;
@@ -46,7 +49,7 @@ export const saveParamsPrompts = async (): Promise<SaveParams | null> => {
     price,
     isReserved,
   };
-  printSavedInfo(inputData);
+  printSavedInfo(therapy, inputData);
   return inputData;
 };
 

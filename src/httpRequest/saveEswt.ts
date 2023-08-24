@@ -5,7 +5,7 @@ import { cookie, userList } from '../index.js';
 import type { SaveParams } from '../types/common.type.js';
 import { printSaveDataResult } from '../cli/output.js';
 
-export const saveData = async (params: SaveParams) => {
+export const saveEswt = async (params: SaveParams) => {
   if (!userList) return;
   const { date, therapist, patientNum, patientType, price, isReserved } =
     params;
@@ -15,18 +15,19 @@ export const saveData = async (params: SaveParams) => {
 
   const headers = {
     accept: 'text/plain, */*; q=0.01',
-    'accept-language': 'ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7',
+    'accept-language': 'ko-KR',
     'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
     'x-requested-with': 'XMLHttpRequest',
-    Referer: `http://jinsul.co.kr/erp/physical/?p=15&mode=add&tp=m&u=${userKey}&w=${date}`,
+    Referer: `http://jinsul.co.kr/erp/physical/?p=15&mode=add&tp=e&u=${userKey}&w=${date}`,
     'Referrer-Policy': 'strict-origin-when-cross-origin',
     cookie,
   };
+  const ESWT_INCEN = 5;
   const body = createBody({
-    phy_type: 'm',
+    phy_type: 'e',
     mode: 'add',
     a: '보정탑정형외과의원',
-    phy_incen: 10,
+    phy_incen: ESWT_INCEN,
     incen_check: 'Y',
     phy_date: date,
     b: therapist,

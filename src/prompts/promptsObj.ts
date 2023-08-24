@@ -89,3 +89,17 @@ export const getPromptOfPatient = (
   };
   return question;
 };
+
+export const getPromptOfTherapy = (): prompts.PromptObject<string> => {
+  const question: prompts.PromptObject<string> = {
+    type: 'select',
+    name: 'therapy',
+    message: '환자는 다음 예약을 하셨나요?',
+    choices: [
+      { title: '0 도수치료', value: 'dosu' },
+      { title: '1 체외충격파', value: 'eswt' },
+    ] as Choice[],
+    initial: 0,
+  };
+  return question;
+};

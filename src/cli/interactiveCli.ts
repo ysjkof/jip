@@ -1,7 +1,8 @@
 import { Command } from 'commander';
-import { loginAndLoadUsersAndPatients } from '../index.js';
+import { loginAndLoadUsersAndPatientsAndPrices } from '../index.js';
 import { initInteractiveUI } from '../interactiveUi/index.js';
 import { isInitInteractiveUI } from '../prompts/yesOrNoPrompts.js';
+import { therapyPrompts } from '../prompts/therapyPrompts.js';
 
 export const interactiveCli = () => {
   const interactiveCli = new Command()
@@ -10,7 +11,8 @@ export const interactiveCli = () => {
     .action(async (_, command) => {
       if (command.args.length) return;
       if (await isInitInteractiveUI()) {
-        await loginAndLoadUsersAndPatients();
+        const therapy = await therapyPrompts();
+        await loginAndLoadUsersAndPatientsAndPrices(therapy);
         initInteractiveUI();
       }
     });

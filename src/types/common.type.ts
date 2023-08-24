@@ -2,7 +2,7 @@ type MODE = 'add' | 'del';
 type PHY_TYPE = 'm' | 'e';
 export type PATIENT_TYPE = '신환' | '재진' | '기타여부';
 export type APPOINT_YN = 'Y' | 'N';
-
+export type THERAPY_TYPE = 'dosu' | 'eswt';
 export interface BodyProps {
   mode: MODE; // add || del
   phy_type: PHY_TYPE; // 충격파: e || 도수치료: m

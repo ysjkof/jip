@@ -2,12 +2,17 @@ import got, { OptionsOfTextResponseBody } from 'got';
 import { parse } from 'node-html-parser';
 import { getToday } from '../lib/dateLib.js';
 import { cookie, userList } from '../index.js';
+import type { THERAPY_TYPE } from '../types/common.type.js';
 
-export const getPatientListAndPrices = async () => {
+export const getPatientListAndPrices = async (type: THERAPY_TYPE) => {
   const userKey = userList?.loginUser.key;
   if (!cookie || !userKey) return null;
 
-  const URL = `http://jinsul.co.kr/erp/physical/?p=15&mode=add&tp=m&u=${userKey}&w=${getToday(
+  let therapyType;
+  if (!therapyType && type === 'dosu') therapyType = 'm';
+  if (!therapyType && type === 'eswt') therapyType = 'e';
+
+  const URL = `http://jinsul.co.kr/erp/physical/?p=15&mode=add&tp=${therapyType}&u=${userKey}&w=${getToday(
     8
   )}`;
 

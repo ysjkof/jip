@@ -1,4 +1,4 @@
-import { saveData } from '../httpRequest/saveData.js';
+import { saveDosu } from '../httpRequest/saveDosu.js';
 import { patientListAndPrices } from '../index.js';
 import { saveParamsPrompts } from '../prompts/saveParamsPrompts.js';
 import { isContinueInput } from '../prompts/yesOrNoPrompts.js';
@@ -8,7 +8,7 @@ export const receiveInputAndSave = async () => {
   const saveParams = await saveParamsPrompts();
 
   if (!saveParams) return;
-  await saveData(saveParams);
+  await saveDosu(saveParams);
 };
 
 export const initInteractiveUI = async () => {

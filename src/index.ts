@@ -7,21 +7,28 @@ import { getPatientListAndPrices } from './httpRequest/getPatientListAndPrices.j
 import { logoutCli } from './cli/logoutCli.js';
 import { loginCli } from './cli/loginCli.js';
 import { dosuCli } from './cli/dosuCli.js';
+import { eswtCli } from './cli/eswtCli.js';
 import { interactiveCli } from './cli/interactiveCli.js';
-import type { PatientListAndPrices, UserList } from './types/common.type.js';
+import type {
+  PatientListAndPrices,
+  THERAPY_TYPE,
+  UserList,
+} from './types/common.type.js';
 
 export let cookie: string | undefined;
 export let userList: UserList | null;
 export let patientListAndPrices: PatientListAndPrices | null;
 
-const loadUsersAndPatients = async () => {
+const loadUsersAndPatientsAndPrices = async (type: THERAPY_TYPE) => {
   userList = await getUserList();
-  patientListAndPrices = await getPatientListAndPrices();
+  patientListAndPrices = await getPatientListAndPrices(type);
 };
 
-export const loginAndLoadUsersAndPatients = async () => {
+export const loginAndLoadUsersAndPatientsAndPrices = async (
+  type: THERAPY_TYPE
+) => {
   cookie = await login();
-  await loadUsersAndPatients();
+  await loadUsersAndPatientsAndPrices(type);
 };
 
 const jip = new Command()
@@ -39,6 +46,7 @@ jip.addCommand(interactiveCli(), { hidden: true, isDefault: true });
 jip.addCommand(loginCli());
 jip.addCommand(logoutCli());
 jip.addCommand(dosuCli());
+jip.addCommand(eswtCli());
 
 jip.parse(process.argv);
 
