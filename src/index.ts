@@ -1,35 +1,10 @@
 #! /usr/bin/env node
 import { Command } from 'commander';
-import { login } from './auth/login.js';
 import { printLine, printNotExistCmd } from './cli/output.js';
-import { getUserList } from './httpRequest/getUserList.js';
-import { getPatientListAndPrices } from './httpRequest/getPatientListAndPrices.js';
 import { logoutCli } from './cli/logoutCli.js';
 import { loginCli } from './cli/loginCli.js';
-import { dosuCli } from './cli/dosuCli.js';
-import { eswtCli } from './cli/eswtCli.js';
 import { interactiveCli } from './cli/interactiveCli.js';
-import type {
-  PatientListAndPrices,
-  THERAPY_TYPE,
-  UserList,
-} from './types/common.type.js';
-
-export let cookie: string | undefined;
-export let userList: UserList | null;
-export let patientListAndPrices: PatientListAndPrices | null;
-
-const loadUsersAndPatientsAndPrices = async (type: THERAPY_TYPE) => {
-  userList = await getUserList();
-  patientListAndPrices = await getPatientListAndPrices(type);
-};
-
-export const loginAndLoadUsersAndPatientsAndPrices = async (
-  type: THERAPY_TYPE
-) => {
-  cookie = await login();
-  await loadUsersAndPatientsAndPrices(type);
-};
+import { dosuCli, eswtCli } from './cli/therapyCli.js';
 
 const jip = new Command()
   .name('jip')
@@ -50,21 +25,12 @@ jip.addCommand(eswtCli());
 
 jip.parse(process.argv);
 
-let isExistArg = false;
 const validArg = process.argv[2];
+const isExistArg = jip.commands.some(
+  (command) => command.name() === validArg || command.alias() === validArg
+);
 
-jip.commands.some((command) => {
-  if (command.name() === validArg || command.alias() === validArg) {
-    isExistArg = true;
-    return;
-  }
-});
-
-if (!validArg) {
+if (!validArg || !isExistArg) {
   jip.outputHelp();
-}
-
-if (validArg && !isExistArg) {
-  jip.outputHelp();
-  printNotExistCmd();
+  if (validArg) printNotExistCmd();
 }

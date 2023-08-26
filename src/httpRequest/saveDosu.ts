@@ -1,11 +1,14 @@
-import got, { type OptionsOfTextResponseBody } from 'got';
+import got from 'got';
 import { createBody } from '../saveData/createBody.js';
 import { SAVE_URL } from './index.js';
-import { cookie, userList } from '../index.js';
-import type { SaveParams } from '../types/common.type.js';
 import { printSaveDataResult } from '../cli/output.js';
+import type { SaveParams, UserList } from '../types/common.type.js';
 
-export const saveDosu = async (params: SaveParams) => {
+export const saveDosu = async (
+  params: SaveParams,
+  cookie: string,
+  userList: UserList
+) => {
   if (!userList) return;
   const { date, therapist, patientNum, patientType, price, isReserved } =
     params;
@@ -22,11 +25,12 @@ export const saveDosu = async (params: SaveParams) => {
     'Referrer-Policy': 'strict-origin-when-cross-origin',
     cookie,
   };
+  const DOSU_INCEN = 10;
   const body = createBody({
     phy_type: 'm',
     mode: 'add',
     a: '보정탑정형외과의원',
-    phy_incen: 10,
+    phy_incen: DOSU_INCEN,
     incen_check: 'Y',
     phy_date: date,
     b: therapist,
@@ -36,12 +40,11 @@ export const saveDosu = async (params: SaveParams) => {
     appoint_yn: isReserved ? 'Y' : 'N',
     phy_ukey: userKey,
   });
-  const options: OptionsOfTextResponseBody | undefined = {
+
+  const response = await got(SAVE_URL, {
     headers,
     body,
     method: 'POST',
-  };
-
-  const response = await got(SAVE_URL, options);
+  });
   printSaveDataResult(response);
 };

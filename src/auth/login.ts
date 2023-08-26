@@ -16,13 +16,10 @@ export const login = async () => {
     return addKeyOfCookie(rawCookie);
   } catch (error: Error | any) {
     const msg = error['message'];
+    let errMsg = '🚨';
     if (msg === '아이디가 없거나 비밀번호가 일치하지 않습니다.') {
-      console.warn(
-        `🚨 ${msg}\n🚨 아래 명령어로 로그인 정보를 저장하세요.\n🚨 login [ID] [Password]\n`
-      );
-      return undefined;
+      errMsg = `🚨 ${msg}\n🚨 아래 명령어로 로그인 정보를 저장하세요.\n🚨 login [ID] [Password]\n`;
     }
-    console.log('🚨', error['cause']);
-    return undefined;
+    throw new Error(errMsg, { cause: error['cause'] });
   }
 };

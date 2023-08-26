@@ -12,6 +12,12 @@ export const getToday = (digit: 6 | 8) => {
   return sixDigit;
 };
 
+export const getDate = (dateStr: string) => {
+  if (dateStr && !isValidDateFormat(dateStr))
+    throw new Error('날짜는 년월일 6자리나 월일 4자리를 입력한다.');
+  return dateStr || getToday(6);
+};
+
 export const isValidDateFormat = (dateString: string): boolean => {
   if (dateString.length !== 4 && dateString.length !== 6) return false;
   if (!isOnlyNumber(dateString)) return false;

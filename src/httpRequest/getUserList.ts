@@ -1,10 +1,8 @@
 import got, { OptionsOfTextResponseBody } from 'got';
 import { parse } from 'node-html-parser';
-import { cookie } from '../index.js';
 import type { UserList } from '../types/common.type.js';
 
-export const getUserList = async (): Promise<UserList | null> => {
-  if (!cookie) return null;
+export const getUserList = async (cookie: string): Promise<UserList> => {
   const URL = 'http://jinsul.co.kr/erp/physical/?p=15&mode=list&tp=m';
   const options: OptionsOfTextResponseBody | undefined = {
     headers: {
@@ -35,11 +33,12 @@ export const getUserList = async (): Promise<UserList | null> => {
     const name = option.text;
     return { key, name };
   });
+  if (userList.length < 1) throw new Error('치료사 정보가 없다.');
+
   const loginUser = {
     key: users.find((user) => user.name === loginUserName)?.key || '',
     name: loginUserName,
   };
-
   if (!loginUser.key)
     throw new Error('getUserList()에서 loginUserKey를 찾을 수 없다.');
 

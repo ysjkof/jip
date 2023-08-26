@@ -1,20 +1,42 @@
+import { TherapyType } from '../enum.js';
 import { saveDosu } from '../httpRequest/saveDosu.js';
-import { patientListAndPrices } from '../index.js';
+import { saveEswt } from '../httpRequest/saveEswt.js';
 import { saveParamsPrompts } from '../prompts/saveParamsPrompts.js';
+import { therapyPrompts } from '../prompts/therapyPrompts.js';
 import { isContinueInput } from '../prompts/yesOrNoPrompts.js';
+import type { PatientListAndPrices, UserList } from '../types/common.type.js';
 
-export const receiveInputAndSave = async () => {
-  if (!patientListAndPrices) return;
-  const saveParams = await saveParamsPrompts();
-
-  if (!saveParams) return;
-  await saveDosu(saveParams);
-};
-
-export const initInteractiveUI = async () => {
+export const initInteractiveUI = async (
+  cookie: string,
+  userList: UserList,
+  patientListAndPrices: PatientListAndPrices,
+  therapy: TherapyType
+) => {
   // if (await isNewPatient()) {
   //   // 신규 환자 등록
   // }
-  await receiveInputAndSave();
-  if (await isContinueInput()) initInteractiveUI();
+  const saveParams = await saveParamsPrompts(
+    therapy,
+    userList,
+    patientListAndPrices
+  );
+
+  const saveTherapy = getSaveFn(therapy);
+  await saveTherapy(saveParams, cookie, userList);
+
+  if (await isContinueInput()) {
+    const _therapy = await therapyPrompts();
+    initInteractiveUI(cookie, userList, patientListAndPrices, _therapy);
+  }
 };
+
+function getSaveFn(therapyType: TherapyType) {
+  switch (therapyType) {
+    case TherapyType.Dosu:
+      return saveDosu;
+    case TherapyType.Eswt:
+      return saveEswt;
+    default:
+      throw new Error('기능이 없다');
+  }
+}

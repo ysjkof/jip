@@ -4,12 +4,14 @@
   "description": "",
   "main": "dist/index.js",
   "bin": {
-    "jip": "./dist/index.js"
+    "jip": "dist/index.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "npx ts-node --esm src/index.ts",
-    "build": "rm -rf dist && npx tsc"
+    "build": "rm -rf dist && npx tsc",
+    "prepublish": "npm run build",
+    "publish": "npm publish"
   },
   "keywords": [
     "cli",
@@ -21,7 +23,7 @@
   "devDependencies": {
     "@types/fuzzy-search": "^2.1.2",
     "@types/prompts": "^2.4.4",
-    "typescript": "^5.1.6",
+    "typescript": "^5.2.2",
     "ts-node": "^10.9.1"
   },
   "dependencies": {
@@ -32,6 +34,9 @@
     "prompts": "^2.4.2"
   },
   "type": "module",
-  "repository": "https://github.com/ysjkof/jip",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ysjkof/jip.git"
+  },
   "homepage": "https://github.com/ysjkof/jip#readme"
 }

@@ -1,8 +1,8 @@
 import { Command } from 'commander';
-import { loginAndLoadUsersAndPatientsAndPrices } from '../index.js';
 import { initInteractiveUI } from '../interactiveUi/index.js';
 import { isInitInteractiveUI } from '../prompts/yesOrNoPrompts.js';
 import { therapyPrompts } from '../prompts/therapyPrompts.js';
+import { loginAndLoadUsersAndPatientsAndPrices } from '../lib/authLib.js';
 
 export const interactiveCli = () => {
   const interactiveCli = new Command()
@@ -12,8 +12,9 @@ export const interactiveCli = () => {
       if (command.args.length) return;
       if (await isInitInteractiveUI()) {
         const therapy = await therapyPrompts();
-        await loginAndLoadUsersAndPatientsAndPrices(therapy);
-        initInteractiveUI();
+        const { cookie, patientListAndPrices, userList } =
+          await loginAndLoadUsersAndPatientsAndPrices(therapy);
+        initInteractiveUI(cookie, userList, patientListAndPrices, therapy);
       }
     });
   return interactiveCli;

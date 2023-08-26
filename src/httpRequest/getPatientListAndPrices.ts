@@ -1,12 +1,15 @@
 import got, { OptionsOfTextResponseBody } from 'got';
 import { parse } from 'node-html-parser';
 import { getToday } from '../lib/dateLib.js';
-import { cookie, userList } from '../index.js';
-import type { THERAPY_TYPE } from '../types/common.type.js';
+import { TherapyType } from '../enum.js';
+import type { UserList } from '../types/common.type.js';
 
-export const getPatientListAndPrices = async (type: THERAPY_TYPE) => {
-  const userKey = userList?.loginUser.key;
-  if (!cookie || !userKey) return null;
+export const getPatientListAndPrices = async (
+  cookie: string,
+  userList: UserList,
+  type: TherapyType
+) => {
+  const userKey = userList.loginUser.key;
 
   let therapyType;
   if (!therapyType && type === 'dosu') therapyType = 'm';
@@ -40,6 +43,9 @@ export const getPatientListAndPrices = async (type: THERAPY_TYPE) => {
   // 환자를 "<환자번호> - <환자이름>" 형태로 반환한다.
   const patients = patientListEl.map((option) => option.text);
   const prices = pricesEl.map((option) => option.attributes['value']);
+
+  if (patients.length < 1) throw new Error('등록된 환자가 없다.');
+  if (prices.length < 1) throw new Error('등록된 가격이 없다.');
 
   return { patients, prices };
 };
