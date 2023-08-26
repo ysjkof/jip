@@ -1,6 +1,5 @@
-import { login } from '../auth/login.js';
-import { getUserList } from '../httpRequest/getUserList.js';
-import { getPatientListAndPrices } from '../httpRequest/getPatientListAndPrices.js';
+import { login } from '../auth/index.js';
+import { getUserList, getPatientListAndPrices } from '../httpRequest/index.js';
 import { TherapyType } from '../enum.js';
 
 export const addKeyOfCookie = (cookie: string) => `PHPSESSID=${cookie}`;

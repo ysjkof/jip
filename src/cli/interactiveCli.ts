@@ -1,7 +1,6 @@
 import { Command } from 'commander';
 import { initInteractiveUI } from '../interactiveUi/index.js';
-import { isInitInteractiveUI } from '../prompts/yesOrNoPrompts.js';
-import { therapyPrompts } from '../prompts/therapyPrompts.js';
+import { isInitInteractiveUI, therapyPrompts } from '../prompts/index.js';
 import { loginAndLoadUsersAndPatientsAndPrices } from '../lib/authLib.js';
 
 export const interactiveCli = () => {

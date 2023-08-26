@@ -1,5 +1,5 @@
 import got from 'got';
-import { createBody } from '../saveData/createBody.js';
+import { createBody } from '../lib/httpRequestLib.js';
 import { SAVE_URL } from './index.js';
 import { printSaveDataResult } from '../cli/output.js';
 import type { SaveParams, UserList } from '../types/common.type.js';

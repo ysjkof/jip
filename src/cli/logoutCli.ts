@@ -1,5 +1,5 @@
 import { Command } from 'commander';
-import { logout } from '../auth/logout.js';
+import { logout } from '../auth/index.js';
 
 export const logoutCli = () => {
   const _logout = new Command()

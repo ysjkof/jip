@@ -1,6 +1,6 @@
 import { Command } from 'commander';
-import { loginPrompts } from '../prompts/loginPrompts.js';
-import { saveIdAndPassword } from '../auth/saveIdAndPassword.js';
+import { loginPrompts } from '../prompts/index.js';
+import { saveIdAndPassword } from '../auth/index.js';
 import { printFailSaveLogin, printSuccessSaveLogin } from './output.js';
 
 export const loginCli = () => {

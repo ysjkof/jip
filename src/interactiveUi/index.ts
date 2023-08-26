@@ -1,9 +1,10 @@
 import { TherapyType } from '../enum.js';
-import { saveDosu } from '../httpRequest/saveDosu.js';
-import { saveEswt } from '../httpRequest/saveEswt.js';
-import { saveParamsPrompts } from '../prompts/saveParamsPrompts.js';
-import { therapyPrompts } from '../prompts/therapyPrompts.js';
-import { isContinueInput } from '../prompts/yesOrNoPrompts.js';
+import { saveDosu, saveEswt } from '../httpRequest/index.js';
+import {
+  saveParamsPrompts,
+  therapyPrompts,
+  isContinueInput,
+} from '../prompts/index.js';
 import type { PatientListAndPrices, UserList } from '../types/common.type.js';
 
 export const initInteractiveUI = async (

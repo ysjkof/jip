@@ -2,9 +2,8 @@ import { Command } from 'commander';
 import { getDate } from '../lib/dateLib.js';
 import { getPrice } from '../lib/priceLib.js';
 import { printSavedInfo } from './output.js';
-import { selectPatient } from '../prompts/saveParamsPrompts.js';
-import { saveDosu } from '../httpRequest/saveDosu.js';
-import { saveEswt } from '../httpRequest/saveEswt.js';
+import { patientPrompts } from '../prompts/index.js';
+import { saveDosu, saveEswt } from '../httpRequest/index.js';
 import { TherapyType } from '../enum.js';
 import { loginAndLoadUsersAndPatientsAndPrices } from '../lib/authLib.js';
 import { isValidUser } from '../lib/userLib.js';
@@ -31,7 +30,7 @@ const therapyCli = (therapyType: TherapyType, saveTherapy: Function) => {
 
       const price = getPrice(options.price, patientListAndPrices.prices);
       const patientNum =
-        _patientNum || (await selectPatient(patientListAndPrices));
+        _patientNum || (await patientPrompts(patientListAndPrices));
 
       const patientType: PATIENT_TYPE = options.first ? '신환' : '재진';
       const isReserved = options.reserved;

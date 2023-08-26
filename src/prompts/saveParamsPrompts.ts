@@ -52,13 +52,13 @@ export const saveParamsPrompts = async (
   return inputData;
 };
 
-export const inputDate = async (): Promise<SaveParams['date']> => {
+export const datePrompts = async (): Promise<SaveParams['date']> => {
   const questions = getPromptOfDate();
   const response = await prompts(questions);
   return response.date;
 };
 
-export const inputPrice = async (
+export const pricePrompts = async (
   patientListAndPrices: PatientListAndPrices
 ): Promise<SaveParams['price']> => {
   const question: prompts.PromptObject<string> = getPromptOfPrice(
@@ -68,7 +68,7 @@ export const inputPrice = async (
   return response.price;
 };
 
-export const inputUser = async (
+export const userPrompts = async (
   userList: UserList
 ): Promise<SaveParams['therapist']> => {
   const questions: prompts.PromptObject<string> = getPromptOfUser(userList);
@@ -76,13 +76,15 @@ export const inputUser = async (
   return response.therapist;
 };
 
-export const selectIsReserved = async (): Promise<SaveParams['isReserved']> => {
+export const isReservedPrompts = async (): Promise<
+  SaveParams['isReserved']
+> => {
   const question: prompts.PromptObject<string> = getPromptOfIsReserved();
   const response = await prompts(question);
   return response.isReserved;
 };
 
-export const selectPatient = async (
+export const patientPrompts = async (
   patientListAndPrices: PatientListAndPrices
 ): Promise<SaveParams['patientNum']> => {
   const question: prompts.PromptObject<string> = getPromptOfPatient(

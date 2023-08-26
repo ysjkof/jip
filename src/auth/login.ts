@@ -1,8 +1,7 @@
-import { loginPrompts } from '../prompts/loginPrompts.js';
+import { loginPrompts } from '../prompts/index.js';
 import { addKeyOfCookie } from '../lib/authLib.js';
-import { loadIdAndPassword } from './loadIdAndPassword.js';
-import { loginRequest } from '../httpRequest/loginRequest.js';
-import { saveIdAndPassword } from './saveIdAndPassword.js';
+import { loginRequest } from '../httpRequest/index.js';
+import { loadIdAndPassword, saveIdAndPassword } from './index.js';
 
 export const login = async () => {
   try {

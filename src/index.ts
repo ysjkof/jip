@@ -1,10 +1,13 @@
 #! /usr/bin/env node
 import { Command } from 'commander';
 import { printLine, printNotExistCmd } from './cli/output.js';
-import { logoutCli } from './cli/logoutCli.js';
-import { loginCli } from './cli/loginCli.js';
-import { interactiveCli } from './cli/interactiveCli.js';
-import { dosuCli, eswtCli } from './cli/therapyCli.js';
+import {
+  interactiveCli,
+  loginCli,
+  logoutCli,
+  dosuCli,
+  eswtCli,
+} from './cli/index.js';
 
 const jip = new Command()
   .name('jip')
