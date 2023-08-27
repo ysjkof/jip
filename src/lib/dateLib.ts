@@ -1,6 +1,7 @@
 import { isOnlyNumber } from './commonLib.js';
+import type { DigitNumber } from '../types/common.type.js';
 
-export const getToday = (digit: 6 | 8) => {
+export const getToday = (digit: DigitNumber) => {
   const year = digit === 6 ? '2-digit' : 'numeric';
   const sixDigit = new Date()
     .toLocaleDateString('ko-KR', {
@@ -12,10 +13,10 @@ export const getToday = (digit: 6 | 8) => {
   return sixDigit;
 };
 
-export const getDate = (dateStr: string) => {
+export const getDateOrToday = (dateStr: string, digit: DigitNumber = 6) => {
   if (dateStr && !isValidDateFormat(dateStr))
     throw new Error('날짜는 년월일 6자리나 월일 4자리를 입력한다.');
-  return dateStr || getToday(6);
+  return dateStr || getToday(digit);
 };
 
 export const isValidDateFormat = (dateString: string): boolean => {

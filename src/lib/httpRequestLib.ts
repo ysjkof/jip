@@ -1,8 +1,12 @@
 import querystring from 'querystring';
 import type { CreateBodyPropsInput } from '../types/common.type.js';
 
+export const createQueryStringFromObject = (obj: {
+  [key: string]: string | number;
+}) => querystring.stringify(obj);
+
 export const createBody = (props: CreateBodyPropsInput) => {
-  return querystring.stringify(createBodyObj(props));
+  return createQueryStringFromObject(createBodyObj(props));
 };
 
 const createBodyObj = (props: CreateBodyPropsInput) => {

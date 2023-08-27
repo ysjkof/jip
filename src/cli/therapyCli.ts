@@ -1,5 +1,5 @@
 import { Command } from 'commander';
-import { getDate } from '../lib/dateLib.js';
+import { getDateOrToday } from '../lib/dateLib.js';
 import { getPrice } from '../lib/priceLib.js';
 import { printSavedInfo } from './output.js';
 import { patientPrompts } from '../prompts/index.js';
@@ -21,7 +21,7 @@ const therapyCli = (therapyType: TherapyType, saveTherapy: Function) => {
     .option('-f, --first', '신환이면 입력합니다.', false)
     .option('-nr, --no-reserved', '예약하지 않았을 때 입력합니다.')
     .action(async (_patientNum, options) => {
-      const date = getDate(options.date);
+      const date = getDateOrToday(options.date);
       const { cookie, patientListAndPrices, userList } =
         await loginAndLoadUsersAndPatientsAndPrices(therapyType);
 
