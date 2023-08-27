@@ -1,4 +1,4 @@
 node_modules
-secret.txt
+src/secret
 memo.md
 dist
