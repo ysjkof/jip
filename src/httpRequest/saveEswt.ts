@@ -39,6 +39,7 @@ export const saveEswt = async (
     phy_price: price,
     appoint_yn: isReserved ? 'Y' : 'N',
     phy_ukey: userKey,
+    room_num: 1,
   });
 
   const response = await got(SAVE_URL, {

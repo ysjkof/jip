@@ -22,6 +22,7 @@ export interface BodyProps {
   replace_price?: number; // 대체가격
   replace_memo?: string; // 비고
   appoint_yn: APPOINT_YN; // 예약여부
+  room_num: number;
 }
 
 export interface CreateBodyPropsInput
@@ -42,6 +43,7 @@ export interface CreateBodyPropsInput
     | 'a'
     | 'phy_incen'
     | 'incen_check'
+    | 'room_num'
   > {}
 
 export interface SaveParams {
