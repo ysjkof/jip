@@ -1,7 +1,7 @@
 import { isOnlyNumber } from './commonLib.js';
 import type { PatientListAndPrices } from '../types/common.type.js';
 
-export const equalizePriceOfDigits = (priceString: string) => {
+const equalizePriceOfDigits = (priceString: string) => {
   if (!isOnlyNumber(priceString))
     throw new Error('가격은 숫자만 입력할 수 있다.');
 

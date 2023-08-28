@@ -50,6 +50,6 @@ export const printSavedInfo = (
   const reservationState = isReserved ? '함' : '안함';
 
   console.log(
-    `날짜: ${date} / 치료사: ${therapist} / 환자: ${patient} / ${therapy} / 가격: ${_price} / ${patientType} / 예약${reservationState}`
+    `${new Date()}\n  날짜: ${date} / 치료사: ${therapist} / 환자: ${patient} / ${therapy} / 가격: ${_price} / ${patientType} / 예약${reservationState}`
   );
 };

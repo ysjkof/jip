@@ -1,6 +1,13 @@
 import { isOnlyNumber } from './commonLib.js';
 import type { DigitNumber } from '../types/common.type.js';
 
+export const toKorDateFromString = (dateStr: string) => {
+  const year = dateStr.substring(0, 4);
+  const month = dateStr.substring(4, 6);
+  const day = dateStr.substring(6, 8);
+  return `${year}년 ${month}월 ${day}일`;
+};
+
 export const getToday = (digit: DigitNumber) => {
   const year = digit === 6 ? '2-digit' : 'numeric';
   const sixDigit = new Date()

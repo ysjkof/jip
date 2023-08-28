@@ -1,5 +1,5 @@
 type MODE = 'add' | 'del';
-type PHY_TYPE = 'm' | 'e';
+export type PHY_TYPE = 'm' | 'e';
 export type PATIENT_TYPE = '신환' | '재진' | '기타여부';
 export type APPOINT_YN = 'Y' | 'N';
 
@@ -13,6 +13,7 @@ export interface BodyProps {
   d: string; // 입력날짜 yyyy년+mm월+dd일
   a: string; // 병원이름
   b: string; // 치료사 이름
+  room_num: number;
   phy_incen: number; // 인센티브 퍼센트
   incen_check?: 'Y'; // 할인/대체 적용. 체크면 Y, 아니면 안보냄.
   patient_num: number; // 환자 번호
@@ -22,29 +23,7 @@ export interface BodyProps {
   replace_price?: number; // 대체가격
   replace_memo?: string; // 비고
   appoint_yn: APPOINT_YN; // 예약여부
-  room_num: number;
 }
-
-export interface CreateBodyPropsInput
-  extends Pick<
-    BodyProps,
-    | 'phy_type'
-    | 'phy_date'
-    | 'b'
-    | 'patient_num'
-    | 'patient_type'
-    | 'phy_price'
-    | 'discount_price'
-    | 'replace_price'
-    | 'replace_memo'
-    | 'appoint_yn'
-    | 'phy_ukey'
-    | 'mode'
-    | 'a'
-    | 'phy_incen'
-    | 'incen_check'
-    | 'room_num'
-  > {}
 
 export interface SaveParams {
   date: BodyProps['phy_date'];
