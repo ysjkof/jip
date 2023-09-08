@@ -7,7 +7,8 @@
     "jip": "dist/index.js"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "vitest",
+    "coverage": "vitest run --coverage",
     "dev": "npx ts-node --esm src/index.ts",
     "build": "rm -rf dist && npx tsc",
     "prepublish": "npm run build",
@@ -23,8 +24,10 @@
   "devDependencies": {
     "@types/fuzzy-search": "^2.1.2",
     "@types/prompts": "^2.4.4",
+    "@vitest/coverage-v8": "^0.34.3",
+    "ts-node": "^10.9.1",
     "typescript": "^5.2.2",
-    "ts-node": "^10.9.1"
+    "vitest": "^0.34.3"
   },
   "dependencies": {
     "commander": "^11.0.0",
