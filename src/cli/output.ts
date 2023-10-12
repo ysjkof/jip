@@ -14,7 +14,7 @@ export const printSuccessSaveLogin = () =>
   console.log('✅ 로그인 정보 저장완료');
 export const printSuccessLogout = () => console.log('✅ 로그아웃 성공.');
 export const printSaveDataResult = (res: Response<string>) =>
-  console.log(`\n✋ ${res.statusMessage}(${res.statusCode}): ${res.body}`);
+  console.log(`✋ ${res.statusMessage}(${res.statusCode}): ${res.body}`);
 
 function getTherapyName(therapyType: TherapyType) {
   switch (therapyType) {
