@@ -19,6 +19,6 @@ export const login = async () => {
     if (msg === '아이디가 없거나 비밀번호가 일치하지 않습니다.') {
       errMsg = `🚨 ${msg}\n🚨 아래 명령어로 로그인 정보를 저장하세요.\n🚨 login [ID] [Password]\n`;
     }
-    throw new Error(errMsg, { cause: error['cause'] });
+    throw new Error(`${errMsg}\nCause: ${error['cause']}`);
   }
 };

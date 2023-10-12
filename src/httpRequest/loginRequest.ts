@@ -26,11 +26,11 @@ export const loginRequest = async ({ id, password }: LoginParams) => {
   const body: LoginResponseBody = JSON.parse(response.body.trim());
 
   if (body.result === 'fail') {
-    throw new Error(body.msg, { cause: body });
+    throw new Error(`${body.msg}\nCause: ${body}`);
   }
   const rawCookie = response.headers['set-cookie'];
   if (!rawCookie) {
-    throw new Error('cookie가 없습니다.', { cause: body });
+    throw new Error(`cookie가 없습니다.\nCause: ${body}`);
   }
 
   const cookie = rawCookie[0].split(';')[0].split('=')[1];
