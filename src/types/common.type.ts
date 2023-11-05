@@ -60,3 +60,9 @@ export interface PatientListAndPrices {
   patients: string[];
   prices: string[];
 }
+
+export interface PrintResult {
+  startDate: string;
+  endDate: string;
+  userName: string;
+}

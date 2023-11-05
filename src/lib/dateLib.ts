@@ -22,12 +22,17 @@ export const getToday = (digit: DigitNumber) => {
 
 export const getDateOrToday = (dateStr: string, digit: DigitNumber = 6) => {
   if (dateStr && !isValidDateFormat(dateStr))
-    throw new Error('날짜는 년월일 6자리나 월일 4자리를 입력한다.');
+    throw new Error('날짜는 년월일 8자, 6자나 월일 4자를 입력한다.');
   return dateStr || getToday(digit);
 };
 
 export const isValidDateFormat = (dateString: string): boolean => {
-  if (dateString.length !== 4 && dateString.length !== 6) return false;
+  if (
+    dateString.length !== 4 &&
+    dateString.length !== 6 &&
+    dateString.length !== 8
+  )
+    return false;
   if (!isOnlyNumber(dateString)) return false;
 
   let year = '';
@@ -41,6 +46,10 @@ export const isValidDateFormat = (dateString: string): boolean => {
     year = dateString.substring(0, 2);
     month = dateString.substring(2, 4);
     day = dateString.substring(4);
+  } else if (dateString.length === 8) {
+    year = dateString.substring(0, 4);
+    month = dateString.substring(3, 6);
+    day = dateString.substring(6);
   }
 
   if (+year < 0 || +year > 99 || +month < 1 || +month > 12 || +day < 1) {

@@ -1,20 +1,24 @@
 import { Response } from 'got';
 import { LINE } from '../constant.js';
 import { TherapyType } from '../enum.js';
-import type { PatientListAndPrices, SaveParams } from '../types/common.type.js';
+import type {
+  PatientListAndPrices,
+  PrintResult,
+  SaveParams,
+} from '../types/common.type.js';
 
-export const printLine = () => console.log(`${LINE}`);
-export const printLineBreak = () => console.log('\n');
-export const printFailSaveLogin = () => console.log('🚨 로그인 정보 저장실패');
+export const printLine = () => console.info(`${LINE}`);
+export const printLineBreak = () => console.info('\n');
+export const printFailSaveLogin = () => console.info('🚨 로그인 정보 저장실패');
 export const printNotExistCmd = () =>
-  console.log(
-    console.log('\n🚨 없는 커맨드를 입력했습니다. 도움말을 확인하세요.')
+  console.info(
+    console.info('\n🚨 없는 커맨드를 입력했습니다. 도움말을 확인하세요.')
   );
 export const printSuccessSaveLogin = () =>
-  console.log('✅ 로그인 정보 저장완료');
-export const printSuccessLogout = () => console.log('✅ 로그아웃 성공.');
+  console.info('✅ 로그인 정보 저장완료');
+export const printSuccessLogout = () => console.info('✅ 로그아웃 성공.');
 export const printSaveDataResult = (res: Response<string>) =>
-  console.log(`✋ ${res.statusMessage}(${res.statusCode}): ${res.body}`);
+  console.info(`✋ ${res.statusMessage}(${res.statusCode}): ${res.body}`);
 
 function getTherapyName(therapyType: TherapyType) {
   switch (therapyType) {
@@ -49,7 +53,17 @@ export const printSavedInfo = (
   const _price = new Intl.NumberFormat('ko-KR').format(price);
   const reservationState = isReserved ? '함' : '안함';
 
-  console.log(
+  console.info(
     `${new Date()}\n  날짜: ${date} / 치료사: ${therapist} / 환자: ${patient} / ${therapy} / 가격: ${_price} / ${patientType} / 예약${reservationState}`
+  );
+};
+
+export const printHistoryPeriod = ({
+  startDate,
+  endDate,
+  userName = '전체',
+}: PrintResult) => {
+  console.info(
+    `  ✅ 조회기간: ${startDate} ~ ${endDate}\n  ✅ 조회대상: ${userName}`
   );
 };

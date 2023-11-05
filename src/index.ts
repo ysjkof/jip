@@ -7,6 +7,7 @@ import {
   logoutCli,
   dosuCli,
   eswtCli,
+  historyCli,
 } from './cli/index.js';
 
 const jip = new Command()
@@ -25,6 +26,7 @@ jip.addCommand(loginCli());
 jip.addCommand(logoutCli());
 jip.addCommand(dosuCli());
 jip.addCommand(eswtCli());
+jip.addCommand(historyCli());
 
 jip.parse(process.argv);
 
