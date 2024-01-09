@@ -14,8 +14,7 @@
     "coverage": "vitest run --coverage",
     "dev": "npx ts-node --esm src/index.ts",
     "build": "rm -rf dist && npx tsc",
-    "prepublish": "npm run build",
-    "publish": "npm publish"
+    "prepublish": "npm run build"
   },
   "keywords": [
     "cli",
