@@ -2,6 +2,7 @@ import { Response } from 'got';
 import { LINE } from '../constant.js';
 import { TherapyType } from '../enum.js';
 import type {
+  ConfigValue,
   PatientListAndPrices,
   PrintResult,
   SaveParams,
@@ -67,3 +68,9 @@ export const printHistoryPeriod = ({
     `  ✅ 조회기간: ${startDate} ~ ${endDate}\n  ✅ 조회대상: ${userName}`
   );
 };
+
+export const printSavedConfig = (config: ConfigValue) =>
+  console.info('기본 값\n', config);
+
+export const printFinishSaveConfig = () =>
+  console.info('✅ 기본 값 설정 저장 완료');

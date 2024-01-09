@@ -66,3 +66,7 @@ export interface PrintResult {
   endDate: string;
   userName: string;
 }
+
+export interface ConfigValue {
+  defaultTherapist: string;
+}

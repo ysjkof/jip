@@ -5,6 +5,8 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 export const ID_AND_PASSWORD_PATH = `${__dirname}/secret`;
+export const CONFIG_PATH = `${__dirname}/config.json`;
+
 export const LINE =
   '-----------------------------------------------------------';
 

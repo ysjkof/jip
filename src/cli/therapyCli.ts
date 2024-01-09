@@ -2,8 +2,9 @@ import { Command } from 'commander';
 import { getDateOrToday } from '../lib/dateLib.js';
 import { getPrice } from '../lib/priceLib.js';
 import { printSavedInfo } from './output.js';
-import { patientPrompts } from '../prompts/index.js';
+import { patientPrompts, userPrompts } from '../prompts/index.js';
 import { saveDosu, saveEswt } from '../httpRequest/index.js';
+import { loadConfig } from '../config/index.js';
 import { TherapyType } from '../enum.js';
 import { loginAndLoadUsersAndPatientsAndPrices } from '../lib/authLib.js';
 import { isValidUser } from '../lib/userLib.js';
@@ -26,7 +27,12 @@ const therapyCli = (therapyType: TherapyType, saveTherapy: Function) => {
         await loginAndLoadUsersAndPatientsAndPrices(therapyType);
 
       if (options.therapist) isValidUser(options.therapist, userList.users);
-      const therapist = options.therapist || userList.loginUser.name;
+      let therapist =
+        options.therapist || (await loadConfig()).defaultTherapist;
+
+      if (!therapist) {
+        therapist = await userPrompts(userList);
+      }
 
       const price = getPrice(options.price, patientListAndPrices.prices);
       const patientNum =
