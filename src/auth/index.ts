@@ -1,6 +1,6 @@
 import { loadIdAndPassword } from './loadIdAndPassword.js';
-import { login } from './login.js';
+import { getCookie } from './getCookie.js';
 import { logout } from './logout.js';
 import { saveIdAndPassword } from './saveIdAndPassword.js';
 
-export { loadIdAndPassword, login, logout, saveIdAndPassword };
+export { loadIdAndPassword, getCookie, logout, saveIdAndPassword };

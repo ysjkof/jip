@@ -3,7 +3,7 @@ import { addKeyOfCookie } from '../lib/authLib.js';
 import { loginRequest } from '../httpRequest/index.js';
 import { loadIdAndPassword, saveIdAndPassword } from './index.js';
 
-export const login = async () => {
+export const getCookie = async () => {
   try {
     let idAndPassword = loadIdAndPassword();
     if (!idAndPassword) {
