@@ -2,6 +2,7 @@ import { Command } from 'commander';
 import { loginPrompts } from '../prompts/index.js';
 import { saveIdAndPassword } from '../auth/index.js';
 import { printFailSaveLogin, printSuccessSaveLogin } from './output.js';
+import { saveIdToConfig } from '../config/index.js';
 
 export const loginCli = () => {
   const _login = new Command()
@@ -18,6 +19,7 @@ export const loginCli = () => {
 
       const isSaved = saveIdAndPassword(idAndPassword);
       if (!isSaved) return printFailSaveLogin();
+      saveIdToConfig(id);
       return printSuccessSaveLogin();
     });
   return _login;

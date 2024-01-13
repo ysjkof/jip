@@ -68,5 +68,6 @@ export interface PrintResult {
 }
 
 export interface ConfigValue {
-  defaultTherapist: string;
+  defaultTherapist?: string;
+  loginId?: string;
 }
