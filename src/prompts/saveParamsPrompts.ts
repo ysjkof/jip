@@ -59,13 +59,11 @@ export const datePrompts = async (): Promise<SaveParams['date']> => {
 };
 
 export const pricePrompts = async (
-  patientListAndPrices: PatientListAndPrices
+  prices: PatientListAndPrices['prices']
 ): Promise<SaveParams['price']> => {
-  const question: prompts.PromptObject<string> = getPromptOfPrice(
-    patientListAndPrices.prices
-  );
+  const question: prompts.PromptObject<string> = getPromptOfPrice(prices);
   const response = await prompts(question);
-  return response.price;
+  return +response.price;
 };
 
 export const userPrompts = async (
