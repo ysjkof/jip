@@ -20,6 +20,9 @@ export const printSuccessSaveLogin = () =>
 export const printSuccessLogout = () => console.info('✅ 로그아웃 성공.');
 export const printSaveDataResult = (res: Response<string>) =>
   console.info(`✋ ${res.statusMessage}(${res.statusCode}): ${res.body}`);
+export const printError = (errorMessage: string) => {
+  console.error(`🚨 오류: ${errorMessage}`);
+};
 
 function getTherapyName(therapyType: TherapyType) {
   switch (therapyType) {
