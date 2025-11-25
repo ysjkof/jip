@@ -1,0 +1,15 @@
+services:
+  server:
+    build: ./server
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./server/src:/app/src
+      - ./server/prisma:/app/prisma
+      - ./server/combined.log:/app/combined.log
+    environment:
+      - DATABASE_URL=file:/app/prisma/dev.db
+      - USER_ID=${USER_ID}
+      - USER_PASSWORD=${USER_PASSWORD}
+      - API_KEY=${API_KEY}
+    restart: always

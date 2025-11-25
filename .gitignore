@@ -3,3 +3,5 @@ src/secret
 memo.md
 dist
 coverage
+*/combined.log
+dev.db
