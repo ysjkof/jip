@@ -2,7 +2,7 @@
   "name": "@ysjkof/jip",
   "version": "1.3.4",
   "description": "",
-  "main": "dist/index.js",
+  "main": "src/electron/main.mjs",
   "bin": {
     "jip": "dist/index.js"
   },
@@ -14,7 +14,9 @@
     "coverage": "vitest run --coverage",
     "dev": "npx ts-node --esm src/index.ts",
     "build": "rm -rf dist && tsc",
-    "publish-dist": "npm run build && npm publish"
+    "publish-dist": "npm run build && npm publish",
+    "electron": "electron .",
+    "build-electron": "electron-builder"
   },
   "keywords": [
     "cli",
@@ -27,7 +29,10 @@
     "@types/fuzzy-search": "^2.1.5",
     "@types/prompts": "^2.4.9",
     "@vitest/coverage-v8": "^1.1.3",
+    "electron": "^28.0.0",
+    "electron-builder": "^24.0.0",
     "ts-node": "^10.9.2",
+    "tsx": "^4.20.6",
     "typescript": "^5.3.3",
     "vitest": "^1.1.3"
   },

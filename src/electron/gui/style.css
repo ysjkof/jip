@@ -1,0 +1,244 @@
+/* Dark theme with modern aesthetics */
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background: linear-gradient(135deg, #1e1e2f, #2b2b3d);
+  color: #e0e0e0;
+}
+.container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+h1, h2 {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+input, button {
+  padding: 0.6rem 1rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+input {
+  background: rgba(255, 255, 255, 0.1);
+  color: #e0e0e0;
+}
+button {
+  background: #4a90e2;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+button:hover {
+  background: #357ab8;
+}
+.tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+.tab {
+  flex: 1;
+  padding: 0.5rem;
+  background: rgba(255,255,255,0.1);
+  border-radius: 4px;
+  cursor: pointer;
+  text-align: center;
+}
+.tab.active {
+  background: #4a90e2;
+}
+.hidden { display: none; }
+.msg { margin-top: 0.5rem; font-weight: 600; }
+
+/* New UI Elements */
+.input-group {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.results-container {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: #2b2b3d;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 100;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.result-item {
+  padding: 0.8rem;
+  cursor: pointer;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.result-item:hover,
+.result-item.selected {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+.chips-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.chip {
+  background: rgba(74, 144, 226, 0.2);
+  color: #4a90e2;
+  padding: 0.4rem 0.8rem;
+  border-radius: 16px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  border: 1px solid rgba(74, 144, 226, 0.3);
+  transition: all 0.2s;
+}
+
+.chip:hover,
+.chip.selected {
+  background: rgba(74, 144, 226, 0.4);
+  transform: translateY(-1px);
+  border-color: #4a90e2;
+  box-shadow: 0 0 8px rgba(74, 144, 226, 0.3);
+}
+
+input[readonly] {
+  background: rgba(0, 0, 0, 0.2);
+  color: #aaa;
+  cursor: default;
+}
+
+/* History Styles */
+.mt-4 { margin-top: 2rem; }
+
+.history-container {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  padding: 1rem;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.history-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.8rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  font-size: 0.9rem;
+}
+
+.history-item:last-child {
+  border-bottom: none;
+}
+
+.history-time { color: #aaa; }
+.history-patient { font-weight: 600; color: #fff; }
+.history-therapist { color: #4a90e2; }
+.history-price { color: #4caf50; }
+
+.history-placeholder {
+  text-align: center;
+  color: #666;
+  padding: 1rem;
+}
+
+/* Target Area Styles */
+.target-radio-group {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.8rem;
+  margin-top: 0.5rem;
+}
+
+.target-label {
+  cursor: pointer;
+  width: 100%;
+}
+
+.target-label input[type="checkbox"] {
+  display: none;
+}
+
+.custom-radio-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: #aaa;
+  transition: all 0.2s ease;
+  font-weight: 500;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.target-label input[type="checkbox"]:checked + .custom-radio-box {
+  background: rgba(74, 144, 226, 0.2);
+  border-color: #4a90e2;
+  color: #4a90e2;
+  box-shadow: 0 0 12px rgba(74, 144, 226, 0.2);
+}
+
+.target-label:hover .custom-radio-box {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Therapist Grid Styles */
+.therapist-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.8rem;
+}
+
+.therapist-chip {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: #aaa;
+  padding: 0.5rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-weight: 500;
+  font-size: 0.9rem;
+  outline: none; /* Remove default focus outline */
+}
+
+.therapist-chip:hover,
+.therapist-chip:focus {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.3);
+  color: #fff;
+}
+
+.therapist-chip.selected {
+  background: rgba(74, 144, 226, 0.2);
+  border-color: #4a90e2;
+  color: #4a90e2;
+  box-shadow: 0 0 12px rgba(74, 144, 226, 0.2);
+}
+
+.therapist-chip:focus {
+  box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.5); /* Focus ring */
+}
